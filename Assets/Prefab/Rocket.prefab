@@ -36,7 +36,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &615534662870919992
 MeshFilter:
@@ -150,6 +150,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   thrustSpeed: 1000
   rotationSpeed: 100
+  thrustAudio: {fileID: 8300000, guid: 6ca7c6a8d18fbf14db14cf215ad55fb8, type: 3}
 --- !u!82 &5051764343942050554
 AudioSource:
   m_ObjectHideFlags: 0
@@ -258,3 +259,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18acf9c43f6484e498088b2bf20780f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  respawnSeconds: 1.5

@@ -5,6 +5,17 @@ using UnityEngine.SceneManagement;
 public class CollisionHandler : MonoBehaviour
 {
     [SerializeField] float respawnSeconds = 1.5f;
+    [SerializeField] AudioClip explosionClip;
+    [SerializeField] AudioClip sucessClip;
+
+    AudioSource audioSource;
+
+    
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -25,11 +36,16 @@ public class CollisionHandler : MonoBehaviour
     void LoadNextLevel()
     {
         int sceneIndex = SceneManager.GetActiveScene().buildIndex;
-        if (sceneIndex == SceneManager.sceneCountInBuildSettings)
+        if (sceneIndex == SceneManager.sceneCountInBuildSettings-1)
         {
             sceneIndex = 0;
         }
-        SceneManager.LoadScene(sceneIndex + 1);
+        else
+        {
+            sceneIndex += 1;
+        }
+        Debug.Log($"Loading Scene {sceneIndex}");
+        SceneManager.LoadScene(sceneIndex);
     }
 
     void Respawn()
@@ -41,12 +57,14 @@ public class CollisionHandler : MonoBehaviour
     void CrashSequence()
     {
         //TODO: Sound effect and particles
+        audioSource.PlayOneShot(explosionClip);
         gameObject.GetComponent<Movement>().enabled = false;
         Invoke("Respawn", respawnSeconds);
     }
 
     void SuccessSequence()
     {
+        audioSource.PlayOneShot(sucessClip);
         gameObject.GetComponent<Movement>().enabled = false;
         Invoke("LoadNextLevel", respawnSeconds);
     }
