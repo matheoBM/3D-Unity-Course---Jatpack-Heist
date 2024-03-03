@@ -8,9 +8,13 @@ public class CollisionHandler : MonoBehaviour
     [SerializeField] AudioClip explosionClip;
     [SerializeField] AudioClip sucessClip;
 
+    [SerializeField] ParticleSystem explosionParticles;
+    [SerializeField] ParticleSystem sucessParticles;
+
     AudioSource audioSource;
 
     bool isTransitioning = false;
+    public bool collisionDisabled = false;
 
     private void Start()
     {
@@ -19,7 +23,7 @@ public class CollisionHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (isTransitioning) return;
+        if (isTransitioning || collisionDisabled) return;
 
         switch (collision.gameObject.tag)
         {
@@ -61,6 +65,7 @@ public class CollisionHandler : MonoBehaviour
     void CrashSequence()
     {
         //TODO: Sound effect and particles
+        explosionParticles.Play();
         audioSource.Stop();
         audioSource.PlayOneShot(explosionClip);
         gameObject.GetComponent<Movement>().enabled = false;
@@ -70,6 +75,7 @@ public class CollisionHandler : MonoBehaviour
 
     void SuccessSequence()
     {
+        sucessParticles.Play();
         audioSource.Stop();
         audioSource.PlayOneShot(sucessClip);
         gameObject.GetComponent<Movement>().enabled = false;

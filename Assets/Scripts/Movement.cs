@@ -12,6 +12,9 @@ public class Movement : MonoBehaviour
     [SerializeField] float thrustSpeed = 1000f;
     [SerializeField] float rotationSpeed = 100f;
     [SerializeField] AudioClip thrustAudio;
+    [SerializeField] ParticleSystem leftThrustParticleSystem;
+    [SerializeField] ParticleSystem rightThrustParticleSystem;
+    [SerializeField] ParticleSystem mainThrustParticleSystem;
 
     Rigidbody rb;
     AudioSource audioSource;
@@ -35,16 +38,11 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            rb.AddRelativeForce(Vector3.up * Time.deltaTime * thrustSpeed);
-            if (!audioSource.isPlaying)
-            {
-                Debug.Log("Audio Playing");
-                audioSource.PlayOneShot(thrustAudio);
-            }
+            InitiateThrusting();
         }
         else
         {
-            audioSource.Stop();
+            StopThrusting();
         }
     }
 
@@ -52,12 +50,62 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
-            ApplyRotation(rotationSpeed);
+            RotateLeft();
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            ApplyRotation(-rotationSpeed);
+            RotateRight();
         }
+        else
+        {
+            StopSideThrustParticles();
+        }
+    }
+
+    private void StopThrusting()
+    {
+        mainThrustParticleSystem.Stop();
+        audioSource.Stop();
+    }
+
+    private void InitiateThrusting()
+    {
+        rb.AddRelativeForce(Vector3.up * Time.deltaTime * thrustSpeed);
+        if (!audioSource.isPlaying)
+        {
+            Debug.Log("Audio Playing");
+            audioSource.PlayOneShot(thrustAudio);
+        }
+
+        if (!mainThrustParticleSystem.isPlaying)
+        {
+            mainThrustParticleSystem.Play();
+        }
+    }
+
+   
+    private void RotateLeft()
+    {
+        ApplyRotation(rotationSpeed);
+        if (!rightThrustParticleSystem.isPlaying)
+        {
+            rightThrustParticleSystem.Play();
+        }
+    }
+
+    private void RotateRight()
+    {
+        ApplyRotation(-rotationSpeed);
+        if (!leftThrustParticleSystem.isPlaying)
+        {
+            leftThrustParticleSystem.Play();
+        }
+    }
+
+    private void StopSideThrustParticles()
+    {
+        leftThrustParticleSystem.Stop();
+        rightThrustParticleSystem.Stop();
     }
 
     private void ApplyRotation(float rotationThrust)
