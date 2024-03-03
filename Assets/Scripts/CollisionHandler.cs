@@ -10,7 +10,7 @@ public class CollisionHandler : MonoBehaviour
 
     AudioSource audioSource;
 
-    
+    bool isTransitioning = false;
 
     private void Start()
     {
@@ -19,6 +19,8 @@ public class CollisionHandler : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if (isTransitioning) return;
+
         switch (collision.gameObject.tag)
         {
             case "Start":
@@ -31,6 +33,8 @@ public class CollisionHandler : MonoBehaviour
                 SuccessSequence();
                 break;
         }
+        
+        
     }
 
     void LoadNextLevel()
@@ -57,15 +61,19 @@ public class CollisionHandler : MonoBehaviour
     void CrashSequence()
     {
         //TODO: Sound effect and particles
+        audioSource.Stop();
         audioSource.PlayOneShot(explosionClip);
         gameObject.GetComponent<Movement>().enabled = false;
+        isTransitioning = true;
         Invoke("Respawn", respawnSeconds);
     }
 
     void SuccessSequence()
     {
+        audioSource.Stop();
         audioSource.PlayOneShot(sucessClip);
         gameObject.GetComponent<Movement>().enabled = false;
+        isTransitioning=true;
         Invoke("LoadNextLevel", respawnSeconds);
     }
 
