@@ -429,6 +429,7 @@ GameObject:
   - component: {fileID: 8387508815930472821}
   - component: {fileID: 472056780426615754}
   - component: {fileID: 4635155304354729438}
+  - component: {fileID: 6418950365185231048}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -496,6 +497,7 @@ MonoBehaviour:
   sucessClip: {fileID: 8300000, guid: 30c4ded9220d53945a6854552d474bd0, type: 3}
   explosionParticles: {fileID: 4249891105486593585}
   sucessParticles: {fileID: 2951083007563724826}
+  collisionDisabled: 0
 --- !u!114 &8387508815930472821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,7 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8abbe73d4f5c9aa43877adde3085d416, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrustSpeed: 1000
+  thrustSpeed: 1447
   rotationSpeed: 100
   thrustAudio: {fileID: 8300000, guid: 6ca7c6a8d18fbf14db14cf215ad55fb8, type: 3}
   leftThrustParticleSystem: {fileID: 7220664862614770545}
@@ -523,7 +525,7 @@ Rigidbody:
   m_GameObject: {fileID: 4231178223844024175}
   serializedVersion: 4
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 0.15
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}
   m_InertiaTensor: {x: 1, y: 1, z: 1}
@@ -637,6 +639,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6418950365185231048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4231178223844024175}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7297c16973c7f24429f4b2c7eb83908e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4899835566463615619
 GameObject:
   m_ObjectHideFlags: 0
