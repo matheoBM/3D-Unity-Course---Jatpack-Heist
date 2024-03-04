@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Movement.cs" />
     <Compile Include="Assets\Scripts\CheatKeys.cs" />
+    <Compile Include="Assets\Scripts\Oscilator.cs" />
     <Compile Include="Assets\Scripts\CollisionHandler.cs" />
   </ItemGroup>
   <ItemGroup>
