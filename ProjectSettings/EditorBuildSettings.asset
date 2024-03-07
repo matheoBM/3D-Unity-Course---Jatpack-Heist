@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Go Around.unity
     guid: b3da21efe89b8ba45a1645f62ab2ca47
+  - enabled: 1
+    path: Assets/Scenes/Stairs.unity
+    guid: 304ec580573b9ad41b137b54a0ff5039
   m_configObjects: {}
