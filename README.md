@@ -5,5 +5,5 @@ Use [a][d] to control que direction of the japack and use [Espace] to activate t
 
 The game os based on the Project Boost from GameDevTv's Complete Unity 3D course.
 
-Test the game here:
-https://sharemygame.com/@MatBM/jetpack-booster
+Test the game [here](https://sharemygame.com/@MatBM/jetpack-booster):
+
