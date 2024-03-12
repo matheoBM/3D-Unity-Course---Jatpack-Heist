@@ -1,4 +1,4 @@
-# 3D Unity Course - Jatpack Heist
+# 3D Unity Course - Jetpack Heist
 
 Simple game in which you control a jatpack to try to get to the ending of the level.
 Use [a][d] to control que direction of the japack and use [Espace] to activate the thrust.
